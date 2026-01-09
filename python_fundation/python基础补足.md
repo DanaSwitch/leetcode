@@ -150,6 +150,9 @@ return ... if ... else ...
     class Solution:
 def addDigits(self, num: int) -> int:
 return (num- 1) % 9 + 1 if num else 0
+
+//条件判断,if cntx > only_x,则need_x = cntx - only_x, 否则need_X = 0;
+need_x = cntx - only_x if cntx > only_x else 0
 ```
 
 
