@@ -23,3 +23,25 @@ while not check(high):
 > 2. **准确性**：如果设置的固定上界不够大，可能找不到解
 > 3. **智能性**：倍增法自动适应不同的数据规模
 
+
+
+
+
+## 二.初始化技巧
+
+想找最小值的话，初始值设为无穷大；想找最大值时，初始值设被负无穷大。
+
+```python
+# 找最小值
+min_value = float('inf')  # 初始化为无穷大
+for num in numbers:
+    if num < min_value:   # 第一个数肯定比无穷大小
+        min_value = num   # 更新最小值
+
+# 找最大值  
+max_value = float('-inf')  # 初始化为负无穷大
+for num in numbers:
+    if num > max_value:    # 第一个数肯定比负无穷大大
+        max_value = num    # 更新最大值
+```
+

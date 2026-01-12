@@ -4,6 +4,25 @@
 
 return返回不需要加括号
 
+python不需要显示声明变量的类型
+
+```java
+// Java需要声明类型
+int a = 10;
+String b = "hello";
+
+// 不能改变类型
+a = "world"; // 编译错误！
+```
+
+
+
+```python
+# Python不需要声明类型
+a = 10
+a = "hello"  # 完全可以！
+```
+
 
 
 ## % / //
@@ -80,7 +99,7 @@ print(dict(grouped))
 # 输出：{'a': ['apple', 'apricot'], 'b': ['banana', 'blueberry'], 'c': ['cherry']}
 ```
 
-## len
+## len获取长度
 
 **`len()`** 是Python内置函数，用于**获取容器（如列表、字符串等）的长度或元素个数**。
 
@@ -90,7 +109,7 @@ arr = [1, 2, 3, 4, 5]
 n = len(arr)  # n = 5
 ```
 
-## range
+## range循环控制
 
 用于循环控制
 
@@ -185,3 +204,30 @@ print(f"10 << 2 = {10 << 2}")      # 输出：40 (1010 << 2 = 101000 = 40)
 print(f"10 >> 1 = {10 >> 1}")      # 输出：5  (1010 >> 1 = 0101 = 5)
 ```
 
+
+
+## append添加
+
+> append是python 列表中用于在列表末尾添加一个元素的方法
+
+```python
+# 创建一个空列表
+my_list = []
+
+# 使用 append 添加元素
+my_list.append(1)     # my_list 现在是 [1]
+my_list.append(2)     # my_list 现在是 [1, 2]
+my_list.append(3)     # my_list 现在是 [1, 2, 3]
+
+print(my_list)  # 输出: [1, 2, 3]
+```
+
+
+
+## 负数-1作为索引
+
+> 在python中，负数作为索引表示从列表末尾开始计数
+>
+> - `list[-1]`：列表的最后一个元素
+> - `list[-2]`：列表的倒数第二个元素
+> - 以此类推...

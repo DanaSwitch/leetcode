@@ -41,17 +41,16 @@ map(函数, 可迭代对象) map将可迭代对象的每个元素以此应用到
 input().spilt() 对输入字符串进行分割
 """
 
-def check(num):
-    # 1-num中x的倍数的数量，去x国的员工数量
+def check(num): #num是当前猜测的k值
+    # 1-num中x的倍数的数量, 不能去x国的员工数量
     xCount = num // x
-    # 1-num中y的倍数的数量，去y国的员工数量
+    # 1-num中y的倍数的数量，不能去y国的员工数量
     yCount = num // y
-    # 1-num中x*y的倍数的数量, x国和y国都能去的员工数量
+    # 1-num中x*y的倍数的数量, x国和y国都不能去的员工数量
     xyCount = num // (x * y)
-    
-    # 只能去x国的人数
+    # 只能去x国的人数, 即是y的倍数但不是x的倍数
     only_x = yCount - xyCount
-    # 只能去y国的人数
+    # 只能去y国的人数, 即是x的倍数但不是y的倍数
     only_y = xCount - xyCount
     # 两国都能去的人数
     both = num - xCount - yCount + xyCount
@@ -66,17 +65,17 @@ def check(num):
 if __name__ == "__main__":
     # 使用倍增+二分
     # 先倍增找到上界
-    high = 1
+    high = 1 #从1开始倍增
     while not check(high):
-        high <<= 1
+        high <<= 1 # 左移一位相当于乘以2
     
     # 二分查找最小k
     low = 1
-    while low < high:
-        mid = (low + high) // 2
-        if check(mid):
+    while low < high: #当low小于high时继续循环
+        mid = (low + high) // 2 #向下取整
+        if check(mid): #此时的mid满足条件，尝试缩小范围
             high = mid
-        else:
+        else: #此时的mid不满足条件，尝试增大范围
             low = mid + 1
     
     print(low)
