@@ -120,16 +120,16 @@ range(start, stop, step) # 从start开始，步长为step
 
 #最常用
 n = 5
-for i in range(n):  # i = 0, 1, 2, 3, 4
+for i in range(n):  # n表示循环次数,从0开始 i = 0, 1, 2, 3, 4
     print(i, end=" ")
 # 输出：0 1 2 3 4
 
-# range(start, stop)
+# range(start, stop) 1/14二刷回顾
 for i in range(2, 7):  # i = 2, 3, 4, 5, 6
     print(i, end=" ")
 # 输出：2 3 4 5 6
 
-# range(start, stop, step)
+# range(start, stop, step) 1/14回顾
 for i in range(0, 10, 2):  # i = 0, 2, 4, 6, 8
     print(i, end=" ")
 # 输出：0 2 4 6 8
@@ -231,3 +231,161 @@ print(my_list)  # 输出: [1, 2, 3]
 > - `list[-1]`：列表的最后一个元素
 > - `list[-2]`：列表的倒数第二个元素
 > - 以此类推...
+
+**注意：**
+
+在正序中：-1表示最后一个元素，在倒序中，-1表示第一个元素（倒序的最后一个元素）
+
+```python
+range(n-2, -1, -1)
+#从倒数第二个元素 (n-2) 开始，倒着走，一直回到第一个元素 (0)
+# 当n = 5时
+range(3, -1, -1)
+# 输出：[3, 2, 1, 0]
+```
+
+
+
+## 切片Slice
+
+​		切片是 Python 中用于**提取序列（字符串、列表、元组等）子集**的强大功能，使用简洁的 `[start:stop:step]` 语法。
+
+**结束索引stop不包含。**
+
+> sequence[start:stop:step]
+> start：起始索引（包含），默认为 0
+> stop： 结束索引（不包含），默认为序列长度
+> step： 步长，默认为 1
+
+**基础切片**
+
+```python
+text = "Hello World"
+nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+# 获取部分元素
+print(text[0:5])      # 输出: Hello
+print(nums[2:7])      # 输出: [2, 3, 4, 5, 6]
+
+# 省略 start 和 stop
+print(text[:5])       # 输出: Hello（从开始到索引4）
+print(nums[5:])       # 输出: [5, 6, 7, 8, 9]（从索引5到结束）
+```
+
+**使用负索引**
+
+```python
+# 负索引表示从末尾开始计数
+text = "Python Programming"
+
+print(text[-11:])      # 输出: Programming（从倒数第11个到结束）
+print(text[-11:-4])    # 输出: Program（从倒数第11个到倒数第5个）
+
+nums = [0, 1, 2, 3, 4, 5]
+print(nums[:-2])       # 输出: [0, 1, 2, 3]（从开始到倒数第3个）
+print(nums[-4:-1])     # 输出: [2, 3, 4]（从倒数第4个到倒数第2个）
+```
+
+**使用步长**
+
+```python
+nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+# 每2个元素取一个
+print(nums[::2])       # 输出: [0, 2, 4, 6, 8]
+
+# 从索引1开始，每3个元素取一个
+print(nums[1::3])      # 输出: [1, 4, 7]
+
+# 反转序列
+print(nums[::-1])      # 输出: [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+print("hello"[::-1])   # 输出: olleh
+
+# 从末尾开始，每2个元素取一个
+print(nums[::-2])      # 输出: [9, 7, 5, 3, 1]
+```
+
+**完整的切片参数**
+
+```python
+nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+# 从索引2到索引8，步长为2
+print(nums[2:8:2])     # 输出: [2, 4, 6]
+
+# 从索引5到开始，反向步长为2
+print(nums[5:0:-2])    # 输出: [5, 3, 1]
+```
+
+**不同类型的数据切片**
+
+```python
+# 字符串切片
+text = "abcdefghij"
+print(text[2:6])       # 输出: cdef
+
+# 列表切片
+my_list = ['a', 'b', 'c', 'd', 'e', 'f']
+print(my_list[1:4])    # 输出: ['b', 'c', 'd']
+
+# 元组切片
+my_tuple = (0, 1, 2, 3, 4, 5)
+print(my_tuple[3:])    # 输出: (3, 4, 5)
+```
+
+**切片赋值**
+
+```python
+# 修改列表的部分元素
+nums = [0, 1, 2, 3, 4, 5]
+
+# 替换索引1到3的元素
+nums[1:4] = [10, 20, 30]
+print(nums)            # 输出: [0, 10, 20, 30, 4, 5]
+
+# 插入元素（使用空切片）
+nums = [1, 2, 3]
+nums[1:1] = [99, 88]   # 在索引1的位置插入
+print(nums)            # 输出: [1, 99, 88, 2, 3]
+
+# 删除元素
+nums = [0, 1, 2, 3, 4, 5]
+nums[2:5] = []         # 删除索引2到4的元素
+print(nums)            # 输出: [0, 1, 5]
+```
+
+**实用技巧**
+
+```python
+# 1. 获取最后n个元素
+nums = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+last_three = nums[-3:]  # 获取最后3个元素
+print(last_three)       # 输出: [7, 8, 9]
+
+# 2. 获取除最后n个元素外的所有元素
+all_but_last_two = nums[:-2]
+print(all_but_last_two) # 输出: [1, 2, 3, 4, 5, 6, 7]
+
+# 3. 获取偶数索引元素
+even_index = nums[::2]
+print(even_index)       # 输出: [1, 3, 5, 7, 9]
+
+# 4. 获取奇数索引元素
+odd_index = nums[1::2]
+print(odd_index)        # 输出: [2, 4, 6, 8]
+
+# 5. 浅拷贝列表
+original = [1, 2, 3, 4, 5]
+copy = original[:]      # 创建新列表，不是引用
+copy[0] = 99
+print(original)         # 输出: [1, 2, 3, 4, 5]（原列表未改变）
+print(copy)             # 输出: [99, 2, 3, 4, 5]
+
+# 6.替换字符串的某一段
+
+```
+
+
+
+## zip
+
