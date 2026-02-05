@@ -1135,3 +1135,136 @@ print(" ".join(res_strings))
 - **代码**：`" ".join(res_strings)`
 - **动作**：把 `'0-1'`，`'3-4'`，`'6-7'` 拿出来，中间插上空格。
 - **结果**：`"0-1 3-4 6-7"` （变成了一个单一的字符串）
+
+
+
+## defaultdict工具箱
+
+`defaultdict` 是 Python 标准库 `collections` 模块中非常实用的一个工具。
+
+简单来说，**它是字典（dict）的一个“升级版”，专门用来解决“键（Key）不存在”时会报错的问题。**
+
+### 1. 普通字典 vs defaultdict
+
+#### 普通字典 (`dict`) 的痛点
+
+如果你想统计每个字符出现的次数，用普通字典写代码，你必须小心翼翼地检查键是否存在：
+
+```python
+d = {}
+s = "apple"
+
+for char in s:
+    if char not in d:
+        d[char] = 0   # 如果键不存在，先初始化为 0
+    d[char] += 1      # 然后再加 1
+
+print(d)
+```
+
+如果你忘了写 `if char not in d` 这一步，直接写 `d[char] += 1`，程序会直接报错：`KeyError: 'a'`。
+
+------
+
+#### 使用 `defaultdict` 的爽点
+
+`defaultdict` 允许你提供一个 **“默认工厂函数”**（比如 `int`、`list`、`set`）。当你访问一个不存在的键时，它不会报错，而是自动调用这个函数生成一个默认值。
+
+**如果是 `defaultdict(int)`：** 默认值就是 `int()` 的返回值，也就是 **0**。
+
+```python
+from collections import defaultdict
+
+d = defaultdict(int)  # 告诉它：如果键不存在，就默认当做 0 处理
+s = "apple"
+
+for char in s:
+    d[char] += 1      # 不需要检查！直接加！
+    # 第一次遇到 'a' 时，它发现 'a' 不在字典里，
+    # 自动创建 d['a'] = 0，然后执行 += 1，变成 1。
+
+print(d)
+# 输出: defaultdict(<class 'int'>, {'a': 1, 'p': 2, 'l': 1, 'e': 1})
+```
+
+### 2. 在刚才的代码中为什么要用它？
+
+> 出自：C卷 字符串计数匹配
+
+在刚才的算法题代码中：
+
+```python
+cnt_digits = defaultdict(int)
+```
+
+我是用来统计数字出现的频次的。
+
+如果不使用 `defaultdict`，代码会变得啰嗦：
+
+```python
+# --- 不用 defaultdict ---
+if char.isdigit():
+    if char not in cnt_digits:  # 需要多写这行
+        cnt_digits[char] = 0    # 还有这行
+    
+    if cnt_digits[char] == 0:
+        satisfied_digits += 1
+    cnt_digits[char] += 1
+```
+
+使用 `defaultdict` 后，代码更简洁：
+
+```python
+# --- 使用 defaultdict ---
+if char.isdigit():
+    if cnt_digits[char] == 0:   # 直接访问，如果不存在它自动返回 0
+        satisfied_digits += 1
+    cnt_digits[char] += 1       # 直接加，不用初始化
+```
+
+### 3. 其他常见用法
+
+除了 `int` (用于计数)，它常配合 `list` 使用：
+
+**`defaultdict(list)`**： 当你想要把一堆数据分类时，比如把所有相同班级的学生归类。
+
+```python
+s_dict = defaultdict(list)
+
+# 假设数据是 (班级, 姓名)
+data = [('1班', '小明'), ('2班', '小红'), ('1班', '小强')]
+
+for class_name, student_name in data:
+    # 如果 '1班' 不存在，它自动创建一个空列表 []，然后 append
+    s_dict[class_name].append(student_name)
+
+print(s_dict)
+# 输出: {'1班': ['小明', '小强'], '2班': ['小红']}
+```
+
+**总结：** 导入它是为了**偷懒**（省去初始化代码）和**安全**（避免 `KeyError` 报错），是写算法题时的神器。
+
+
+
+## char中的一些操作
+
+isdigit()
+
+```python
+if left_char.isdigit():
+    # 如果这个数字出现次数多于1，说明删掉一个没事
+    if cnt_digits[left_char] > 1:
+        can_remove = True
+```
+
+isLower()
+
+```python
+# --- 3. 维护 l_k_low 指针 (字母约束下限) ---
+# 目标：确保窗口内字母数 <= k。如果 > k，必须收缩。
+while c_low > k:
+    if s[l_k_low].islower():
+        c_low -= 1
+        l_k_low += 1
+```
+
