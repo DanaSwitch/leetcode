@@ -4,6 +4,12 @@
 >
 > 再map转化为对应的数据类型，如int
 
+
+
+## input().strip().split()
+
+
+
 ## sys.stdin.readline.strip()
 
 - `sys.stdin.readline()` 每次只读**一行**。
@@ -14,7 +20,11 @@
 
 
 
-## sys.stdin.read.strip()
+## 重点： sys.stdin.read.split()
+
+`sys.stdin.read().split()` 可以一次性把所有输入读进内存，处理速度极快，而且自动处理了换行符和空格，不需要一行行去 strip。
+
+配合 `iter()` 使用，就像有一个指针，读一个就把指针往后移一位，非常优雅。
 
 ```python
 raw_data = sys.stdin.read().split()  # 按 空格/换行符 将输入进行分开
@@ -26,5 +36,46 @@ if not raw_data:
 # 把所有字符串转换成整数，方便后面计算
 # map(int, raw_data) 意思是对 raw_data 里的每一个元素都执行 int() 操作
 data = list(map(int, raw_data))
+```
+
+
+
+### 前面某几个数，后面一堆数
+
+```python
+input_data = sys.stdin.read().split()
+
+if not input_data:
+    return
+
+# 2. 创建一个迭代器，像指针一样方便我们需要时取下一个数据
+iterator = iter(input_data)
+
+# 依次取出 N, K, L
+N = int(next(iterator))
+K = int(next(iterator))
+L = int(next(iterator))
+
+# 接下来读取 N 个初始兵营人数
+# 列表推导式配合迭代器，快速生成列表
+camps = [int(next(iterator)) for _ in range(N)]
+```
+
+
+
+### 前面一堆数，后面几个数
+
+```python
+# 读取所有输入
+data = sys.stdin.read().split()
+if len(data) < 3: return
+
+# 星号解包：nums 拿走前面所有，k 和 target 拿走最后两个
+*nums_raw, k_raw, target_raw = data
+
+# 转换类型并排序（排序是去重和双指针的前提）
+nums = sorted(map(int, nums_raw))
+k = int(k_raw)
+target = int(target_raw)
 ```
 
