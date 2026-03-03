@@ -14,6 +14,8 @@
 ```python
 memo = {}  # 默认是字典
 memo = set()  # 集合创建方式
+
+dictionary 字典, 要查找的键key在哪个值（下标）
 ```
 
 
