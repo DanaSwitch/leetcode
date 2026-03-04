@@ -7,6 +7,7 @@ arr = list(map(int, input().split()))
 
 # segment: 差值数组; index: 当前处理到的下标; abandon: 是否已经舍弃过一个队; 
 # total: 当前累计差值和; minTotal: 记录全局最小差值和的容器
+# 计算每段的最小差值和
 def getMaxCountMinSum(segment, index, abandon, total, minTotal):
     
     # 1. 递归终止条件：如果下标已经走到或超过了差值数组末尾
@@ -71,6 +72,7 @@ def getResult(n, d, arr):
             segment.append(diff)
 
     # 最后一个分段也要记得处理，上面逻辑无法将最后一个分段处理到
+    # 前面的 for 循环是“靠‘鸿沟’（diff > d）来触发结算”的，而最后一段队伍的后面，已经没有新的“鸿沟”了。
     if len(segment) > 0:
         flag = False
         minTotal = [float('inf')]
