@@ -21,16 +21,15 @@ while True:
 # 按优先和预约顺序排序
 applicants.sort(key=lambda x: ((not x.priority), x.order))  # not是倒序, True要排在False的前面
 
-queue = deque(applicants)  #双端队列
+queue = deque(applicants)  #双端队列, 可以在中间插入
 
 while queue:  # 队伍有人
     cur = queue.popleft()  # 队首取出第一个人
     print(f"{cur.id}:{cur.name}:{'Y' if cur.miss > 0 else 'N'}")
-
+    # 如果过号, 则后退
     if cur.miss > 0:
         cur.orderMiss += 1
         cur.miss -= 1
         step = 1 << (cur.orderMiss - 1)
         step = min(step, len(queue))  # 不超过队列长度
         queue.insert(step, cur)  # 插入到退避步长位置
-
