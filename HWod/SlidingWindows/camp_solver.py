@@ -1,73 +1,46 @@
 import sys
 
 def solve():
-    # 1. 使用 sys.stdin.read() 一次性读取所有输入
-    # .split() 会自动处理空格和换行，生成一个全是字符串的列表
-    input_data = sys.stdin.read().split()
-
-    if not input_data:
+    line1 = sys.stdin.readline().split()
+    if not line1:
         return
+    N, K, L = map(int, line1)  # 营地数, 兵营数, 命令数
 
-    # 2. 创建一个迭代器，像指针一样方便我们需要时取下一个数据
-    iterator = iter(input_data)
+    # 读取 camps 数组 (假设数据在第二行)
+    camps = list(map(int, sys.stdin.readline().split()))
 
-    # 依次取出 N, K, L
-    N = int(next(iterator))
-    K = int(next(iterator))
-    L = int(next(iterator))
-
-    # 接下来读取 N 个初始兵营人数
-    # 列表推导式配合迭代器，快速生成列表
-    camps = [int(next(iterator)) for _ in range(N)]
-
-    # 3. 处理 L 条命令
+    # 处理 L 条命令
     for _ in range(L):
-        cmd_type = next(iterator) # 读取命令类型 (Add/Sub/Query)
-        p1 = int(next(iterator))  # 读取 i
-        p2 = int(next(iterator))  # 读取 j
-
-        if cmd_type == 'Add':
-            # i 对应的列表索引是 p1 - 1
-            camps[p1 - 1] += p2
-
-        elif cmd_type == 'Sub':
-            camps[p1 - 1] -= p2
-
-        elif cmd_type == 'Query':
-            # Query i j: 查询从 i 到 j 范围内，连续 K 个兵营的最小和
-            start_range = p1 - 1  # 范围起始索引
-            end_range = p2 - 1    # 范围结束索引
-
-            # --- 滑动窗口逻辑 ---
+        line = sys.stdin.readline().split()
+        if not line:
+            break
             
-            # 计算第一个窗口的和 (起点是 start_range)
-            current_sum = sum(camps[start_range : start_range + K])
-            min_sum = current_sum
+        cmd_type = line[0]
+        i = int(line[1])
+        j = int(line[2])
 
-            # 窗口滑动的最后起点的索引
-            # 假设范围是 [0, 4], K=2，最后一个窗口是 [3, 4]，起点是 3
-            # 3 = 4 - 2 + 1
-            limit = end_range - K + 1
-
-            # 开始滑动
-            # current_head 是窗口的【头】（左边第一个元素）的索引
-            # 从第二个窗口开始滑，所以起点是 start_range + 1
-            for current_head in range(start_range + 1, limit + 1):
-                # 离开窗口的元素：是上一个窗口的头部 (current_head - 1)
-                leaving_val = camps[current_head - 1]
-                
-                # 进入窗口的元素：是当前窗口的尾部
-                # 当前头是 current_head, 长度 K, 尾部索引是 current_head + K - 1
-                entering_val = camps[current_head + K - 1]
-
-                # 更新窗口和：减去离开的，加上进来的
-                current_sum = current_sum - leaving_val + entering_val
-
-                if current_sum < min_sum:
-                    min_sum = current_sum
+        if cmd_type == 'Query':
+            start = i - 1  # 转化为0开头
+            end = j - 1
             
+            # 计算第一个窗口的和(连续K个兵营数的和)
+            cur_sum = sum(camps[start : start + K])
+            min_sum = cur_sum
+            # current + k - 1 <= end
+            limit = end - K + 1
+
+            # 滑动窗口
+            for cur_head in range(start + 1, limit + 1):
+                # 减去滑出的，加上滑入的
+                cur_sum = cur_sum - camps[cur_head - 1] + camps[cur_head + K - 1]
+                min_sum = min(cur_sum, min_sum)
+
             print(min_sum)
 
+        elif cmd_type == 'Add':
+            camps[i - 1] += j
+        elif cmd_type == 'Sub':
+            camps[i - 1] -= j
 
 if __name__ == "__main__":
     solve()

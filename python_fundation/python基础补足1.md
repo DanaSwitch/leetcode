@@ -18,6 +18,18 @@ memo = set()  # 集合创建方式
 dictionary 字典, 要查找的键key在哪个值（下标）
 ```
 
+列表可以当作队列来使用
+
+```python
+result_list = []
+result_list.append((i, j))
+res_strings = [f"{start}-{end}" for start, end in result_list]
+```
+
+
+
+
+
 
 
 **基础数据结构：**
@@ -1309,4 +1321,12 @@ while c_low > k:
 ## reduce
 
 **`reduce(函数, 序列)`**: 这是 Python 的一个高阶函数。它的作用是把一个二元函数（接收两个参数）**累积**地应用到序列的元素上。
+
+
+
+##  
+
+
+
+
 
