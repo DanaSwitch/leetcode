@@ -55,3 +55,12 @@ for item_id, info in low_price_map.items():
     final_price = original_price
 ```
 
+
+
+
+
+### append 和 pop
+
+遵循”后进先出“的原则：
+
+> append(gem[i]) 是将元素放在列表的最后面，selected.pop() 是将最后一个元素弹出来
