@@ -17,7 +17,7 @@ def solve():
     n = len(s)
     
     # 状态变量
-    cnt_digits = defaultdict(int) #键如果不存在, 默认当0处理
+    cnt_digits = defaultdict(int) #键如果不存在, 自动创建0, 默认当0处理
     satisfied_digits = 0  # 记录当前有多少种数字(0-9)已经出现
     
     c_low = 0   # l_k_low 窗口内的字母数量

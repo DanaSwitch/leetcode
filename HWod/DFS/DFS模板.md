@@ -1,6 +1,8 @@
 # DFS模板
 
-### 模板
+### 回溯模板
+
+> 找出所有满足条件的解（输出所有可能的组合方案，打印出所有排列）
 
 ```python
 def backtrack(候选集, 路径, 深度):
@@ -19,6 +21,33 @@ def backtrack(候选集, 路径, 深度):
         
         # 撤销选择（回溯的关键）：把刚刚尝试的路删掉，换下一条路
         路径.pop()
+```
+
+
+
+### 递归＋记忆化搜索
+
+> 求出问题的最优解（）
+
+```python
+# 1. 准备全局或外部的缓存结构
+memo = {}
+
+def dfs(state):
+    # 2. 终止条件：到达递归边界
+    if base_case(state):
+        return result
+    
+    # 3. 记忆化检查：查看是否已经计算过
+    if state in memo:
+        return memo[state]
+    
+    # 4. 计算逻辑：进行搜索/状态转移
+    res = compute(state) # 可能是多个递归子问题的组合
+    
+    # 5. 存入缓存：将结果存入字典或数组
+    memo[state] = res
+    return res
 ```
 
 
