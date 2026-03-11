@@ -13,7 +13,7 @@
 
 ```python
 memo = {}  # 默认是字典
-memo = set()  # 集合创建方式
+memo = set()  # 集合创建方式, 自动去重
 
 dictionary 字典, 要查找的键key在哪个值（下标）
 ```
@@ -404,7 +404,9 @@ arr = [1, 2, 3, 4, 5]
 n = len(arr)  # n = 5
 ```
 
-## range循环控制，stop是开区间
+## range
+
+**循环控制，stop是开区间**
 
 用于循环控制
 
@@ -561,6 +563,9 @@ range(3, -1, -1)
 ```python
 text = "Hello World"
 nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+# 获取全部元素
+print(nums[:])
 
 # 获取部分元素
 print(text[0:5])      # 输出: Hello

@@ -1,61 +1,48 @@
-def parse_array(line):
-    """手动解析形如 "[0, 1, 4, 5, 6, 7]" 的字符串"""
-    line = line.strip().strip('[]')
-    if not line:
+from itertools import combinations
+
+def solve():
+    # 使用切片方式解析字符串 [0,1,2] -> [0, 1, 2]
+    line1 = input().strip()
+    if line1 == "[]":
+        lines = []
+    else:
+        lines = list(map(int, line1[1:-1].split(',')))
+        
+    num = int(input().strip())  # 申请的处理器数量
+    
+    # 链路划分逻辑
+    link1 = sorted([x for x in lines if 0 <= x <= 3])
+    link2 = sorted([x for x in lines if 4 <= x <= 7])
+    
+    if num == 8:
+        return [sorted(lines)] if len(lines) == 8 else []
+
+    # 优先级映射
+    priority_map = {
+        1: {1: 0, 3: 1, 2: 2, 4: 3},
+        2: {2: 0, 4: 1, 3: 2},
+        4: {4: 0}
+    }
+    pmap = priority_map.get(num, {})  # 返回num对应的优先级队列
+    
+    candidates = []
+    if len(link1) >= num:
+        candidates.append((pmap.get(len(link1), 99), link1))
+    if len(link2) >= num:
+        candidates.append((pmap.get(len(link2), 99), link2))
+        # [(1, [link1的详细数据]), (0, [link2的详细数据])]
+    
+    if not candidates:
         return []
-    return [int(x.strip()) for x in line.split(',')]
-
-
-def get_combinations(arr, num):
-    """回溯法实现组合"""
+    
+    best_priority = min(c[0] for c in candidates)  # 选优先级更小的
+    best_links = [c[1] for c in candidates if c[0] == best_priority]
+    
     result = []
-    combo = []
-
-    def backtrack(start):
-        if len(combo) == num:
-            result.append(combo[:])
-            return
-        remaining_needed = num - len(combo)
-        for i in range(start, len(arr) - remaining_needed + 1):
-            combo.append(arr[i])
-            backtrack(i + 1)
-            combo.pop()
-
-    backtrack(0)
+    for link in best_links:
+        for combo in combinations(link, num):
+            result.append(list(combo))
+            
     return result
 
-
-def get_processor_combinations(array, num):
-    chain0 = sorted([x for x in array if 0 <= x <= 3])
-    chain1 = sorted([x for x in array if 4 <= x <= 7])
-    chains = [chain0, chain1]
-
-    if num == 8:
-        if len(array) == 8:
-            return [sorted(array)]
-        return []
-
-    priority_map = {
-        1: [1, 3, 2, 4],
-        2: [2, 4, 3],
-        4: [4],
-    }
-
-    for target_size in priority_map[num]:
-        result = []
-        for chain in chains:
-            if len(chain) == target_size:
-                for combo in get_combinations(chain, num):
-                    result.append(combo)
-        if result:
-            return result
-
-    return []
-
-
-line1 = input().strip()
-num = int(input().strip())
-array = parse_array(line1)
-
-result = get_processor_combinations(array, num)
-print(result)
+print(solve())

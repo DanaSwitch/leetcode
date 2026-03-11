@@ -109,6 +109,18 @@ PO2 = defaultdict(lambda: [0, 0])  # 价格低于等于100
 
 
 
+`dict.get(key, default)` 是一个非常实用且安全的方法。
+
+简单来说，它的作用是：**“如果字典里有这个键，就给我对应的值；如果没找到，就返回我设定的那个‘默认值’。”**
+
+```python
+children = next_tasks.get(father, [])
+```
+
+
+
+
+
 ### global和nonlocal
 
 #### 核心区别对照表
