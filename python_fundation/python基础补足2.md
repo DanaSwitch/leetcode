@@ -119,6 +119,14 @@ children = next_tasks.get(father, [])
 
 
 
+```python
+records = {}
+...
+records.setdefault(cards, []) # 检查字典是否存在键cards, 没有的话就初始化空列表[]
+```
+
+
+
 
 
 ### global和nonlocal
@@ -182,3 +190,28 @@ nums = [0,1,2]
 **流程：** > `m = re.search(r'(正则1)#(正则2)', s)`
 
 **逻辑：** > 1. 如果 `m` 有值 -> 成功找到！ 2. `m.group(1)` -> 拿到 `#` 左边的。 3. `m.group(2)` -> 拿到 `#` 右边的。 4. `m.group()` -> 拿到整个 `x#y`（方便用来替换）。
+
+
+
+### 一直读的输入处理
+
+```python
+for line in sys.stdin:  # 一直读, 按行处理, 至到手动结束
+    line = line.strip()
+    if not line:
+        continue
+    time, card, state = line.split()
+```
+
+
+
+
+
+两行一起读
+
+```python
+for lines in sys.stdin:
+    n, m = map(int, lines.split())
+    cards = list(map(int, sys.stdin.readline().strip().split()))
+```
+
