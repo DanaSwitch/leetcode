@@ -215,3 +215,99 @@ for lines in sys.stdin:
     cards = list(map(int, sys.stdin.readline().strip().split()))
 ```
 
+
+
+
+
+### round(x, 3)小数约分
+
+`round(x, 3)` 是 Python 内置函数，对 `x` 保留 3 位小数四舍五入：
+
+
+
+### 保留小数，不够凑0
+
+```python
+num = 5.5
+
+# 保留3位小数，不够补0
+print(f"{num:.3f}")       # → 5.500
+
+# 整数，总宽度5位，前面补0
+print(f"{num:05.0f}")     # → 00006  (整数部分)
+
+# 常见组合：总宽度8位，3位小数，前面补0
+print(f"{num:08.3f}")     # → 0005.500
+​```
+
+格式语法拆解：
+​```
+f"{num: 0 8 . 3 f}"
+         │ │   │ └─ 类型：f=浮点数
+         │ │   └─── 小数位数
+         │ └─────── 总宽度（含小数点）
+         └───────── 不够时用0填充（去掉则用空格）
+```
+
+
+
+
+
+### 组合数工具itertools
+
+```python
+from itertools import combinations
+
+combinations(nums, r)  # 从 nums 中取出 r 个元素的所有可能组合（不考虑顺序，即 (1,2) 和 (2,1) 被视为同一个）
+```
+
+
+
+### sorted()用法
+
+对列表的列表进行排序
+
+```python
+students = [["Zhang", 88], ["Li", 95], ["Wang", 95], ["Zhao", 82]]
+
+# 要求：按分数降序排列
+# x 代表列表中的每一个子列表，x[1] 就是分数
+sorted_students = sorted(students, key=lambda x: x[1], reverse=True)
+# 输出: [['Li', 95], ['Wang', 95], ['Zhang', 88], ['Zhao', 82]]
+```
+
+
+
+对列表中的字典进行排序
+
+```python
+users = [
+    {"name": "Zhang", "age": 30},
+    {"name": "Li", "age": 25},
+    {"name": "Wang", "age": 28}
+]
+
+# x 代表列表中的每一个字典，x["age"] 提取用于排序的值
+sorted_users = sorted(users, key=lambda x: x["age"])
+
+# 结果：Li (25), Wang (28), Zhang (30)
+```
+
+
+
+对字典本身排序
+
+```python
+scores = {"Alice": 88, "Bob": 95, "Charlie": 82}
+
+# 1. 按键（名字）排序
+print(sorted(scores.items(), key=lambda x: x[0])) 
+# [('Alice', 88), ('Bob', 95), ('Charlie', 82)]
+
+# 2. 按值（分数）降序排序
+print(sorted(scores.items(), key=lambda x: x[1], reverse=True))
+# [('Bob', 95), ('Alice', 88), ('Charlie', 82)]
+```
+
+
+
