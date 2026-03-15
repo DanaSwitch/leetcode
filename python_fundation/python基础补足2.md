@@ -311,3 +311,17 @@ print(sorted(scores.items(), key=lambda x: x[1], reverse=True))
 
 
 
+### index(target)
+
+`mid.index(root_val)` 是 Python 字符串的内置方法，作用是**找到某个字符在字符串中的位置（下标）**。
+
+```python
+mid = "CBAEDF"
+root_val = "A"
+
+idx = mid.index("A")
+# idx = 2，因为 A 在下标 2 的位置
+# C B A E D F
+# 0 1 2 3 4 5
+```
+
