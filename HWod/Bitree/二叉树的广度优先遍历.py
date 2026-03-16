@@ -13,7 +13,7 @@ def split_tree(post, mid, queue, ans):
 
     # 在中序遍历中找到根节点的位置
     # 根节点左边 = 左子树，根节点右边 = 右子树
-    root_idx = mid.index(root)
+    root_idx = mid.find(root)
 
     left_len = root_idx  # 左子树节点数 = 根节点在中序中的下标
 

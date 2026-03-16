@@ -311,17 +311,26 @@ print(sorted(scores.items(), key=lambda x: x[1], reverse=True))
 
 
 
-### index(target)
+### find(target)
 
-`mid.index(root_val)` 是 Python 字符串的内置方法，作用是**找到某个字符在字符串中的位置（下标）**。
+`mid.find(root_val)` 是 Python 字符串的内置方法，作用是**找到某个字符在字符串中的位置（下标），找不到会返回-1**
 
 ```python
 mid = "CBAEDF"
 root_val = "A"
 
-idx = mid.index("A")
+idx = mid.find("A")
 # idx = 2，因为 A 在下标 2 的位置
 # C B A E D F
 # 0 1 2 3 4 5
 ```
 
+
+
+
+
+### ASCII码切换
+
+chr：将数字转化为对应的字符
+
+ord：将字符转化为数字

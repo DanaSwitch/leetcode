@@ -5,7 +5,7 @@ def solve():
     n = int(input_data[0])
     weights = list(map(int, input_data[1:n+1]))
     
-    # 用循环手动算异或，替代 reduce(xor, weights)
+    # 循环手动算异或
     total_xor = 0
     for w in weights:
         total_xor ^= w  # ^= 就是异或运算符
