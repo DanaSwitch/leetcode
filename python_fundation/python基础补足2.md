@@ -334,3 +334,15 @@ idx = mid.find("A")
 chr：将数字转化为对应的字符
 
 ord：将字符转化为数字
+
+
+
+### set()集合的增删
+
+add()和remove()
+
+```python
+body_set.add((nr, nc))
+body_set.remove(tail)
+```
+

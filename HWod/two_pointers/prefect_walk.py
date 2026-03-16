@@ -1,4 +1,4 @@
-import collections
+from collections  import Counter
 
 def min_replace_length():
     # 读取输入并去除首尾空格
@@ -9,7 +9,7 @@ def min_replace_length():
     target = n // 4
     # 统计当前字符串中各字符的数量
     # Counter 会生成类似 {'A': 2, 'S': 1, ...} 的字典
-    count = collections.Counter(s)
+    count = Counter(s)
     # 检查是否已经是完美走位
     if all(count[c] == target for c in "WASD"):
         print(0)
