@@ -346,3 +346,14 @@ body_set.add((nr, nc))
 body_set.remove(tail)
 ```
 
+
+
+### 字典的增删
+
+```python
+cache[fname][1] += 1  # 访问次数加一
+cache[fname][2]  = timer
+
+del cache[evict]
+```
+
