@@ -357,3 +357,21 @@ cache[fname][2]  = timer
 del cache[evict]
 ```
 
+
+
+
+
+### try_except
+
+```python
+try:
+    # Plan A：尝试去执行正常的计算
+    res = eval("1 / 0")
+    
+except:
+    # Plan B：如果 Plan A 搞砸了（比如遇到了除以0报错），就立刻执行这里的代码，程序不会崩溃！
+    print("ERROR")
+```
+
+
+
