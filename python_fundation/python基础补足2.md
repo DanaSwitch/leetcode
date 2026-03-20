@@ -33,6 +33,54 @@ for sequence in grouped:
 
 nums = sorted(list(map(int, input().split())))
 
+---
+
+哈哈，lambda 其实非常灵活！它本质上就是一个**返回单个表达式的匿名函数**，所以只要是合法的 Python 表达式都可以放进去，不局限于索引。
+
+```python
+# 你以为只能这样
+key=lambda x: (x[0], x[1])
+
+# 其实表达式都可以！
+key=lambda name: (-agree[name], disagree[name], name)
+
+# 甚至更花里胡哨的也行
+key=lambda x: (x.lower(), len(x), x[::-1])
+
+# 三元表达式也没问题
+key=lambda x: (0 if x > 0 else 1, x)
+```
+
+本质上等价于这个普通函数：
+
+
+
+```python
+def sort_key(name):
+    return (-agree[name], disagree[name], name)  # 返回一个元组
+
+sorted_names = sorted(all_names, key=sort_key)
+```
+
+**元组排序的原理**是 Python 会**逐位比较**，第一位相同再比第二位，以此类推，所以用元组表达多级排序非常自然，这也是 Python 排序里很常见的写法 😄
+
+
+
+
+
+```python
+sorted_names = sorted(
+    all_names,
+    key=lambda name: (-agree[name], disagree[name], name)
+)
+
+# sorted + lambda 的本质等价于：
+for name in all_names:        # sorted 内部自动遍历 all_names
+    key = (-agree[name], disagree[name], name)  # 对每个元素计算 key
+    # 然后按 key 排序
+# name 这个变量名你随便起，叫 x、叫 person 都一样
+```
+
 
 
 
@@ -97,7 +145,7 @@ s = bin(n)[2:]   # 切掉前面的0x字符
 
 
 
-### defaultdict
+### defaultdict 字典
 
 comment = defaultdict(list)    # 键不存在，自动创建空列表
 
@@ -123,6 +171,17 @@ children = next_tasks.get(father, [])
 records = {}
 ...
 records.setdefault(cards, []) # 检查字典是否存在键cards, 没有的话就初始化空列表[]
+```
+
+
+
+**字典的增删**
+
+```python
+cache[fname][1] += 1  # 访问次数加一
+cache[fname][2]  = timer
+
+del cache[evict]
 ```
 
 
