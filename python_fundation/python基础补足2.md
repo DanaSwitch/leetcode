@@ -434,3 +434,23 @@ except:
 
 
 
+###  f-string 格式化字符串
+
+在字符串前加 `f`，就可以在 `{}` 里直接写变量或表达式
+
+```python
+name = "Alice"
+age = 20
+
+print(f"My name is {name}, I am {age} years old")
+
+
+pi = 3.1415926
+print(f"{pi:.2f}")
+输出：3.14
+
+f'文字内容 {变量或表达式:格式说明符}'
+
+f'{b:02X}'  # '0A'     2位，不足补0  ← 题目要求这个
+```
+

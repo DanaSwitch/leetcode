@@ -1,0 +1,84 @@
+<svg width="100%" viewBox="0 0 680 365" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  <mask id="imagine-text-gaps-127snm" maskUnits="userSpaceOnUse"><rect x="0" y="0" width="680" height="365" fill="white"/><rect x="117.20291137695312" y="22.327821731567383" width="104.87459564208984" height="21.270122528076172" fill="black" rx="2"/><rect x="189.18185424804688" y="163.76699829101562" width="51.81864929199219" height="19.11135768890381" fill="black" rx="2"/><rect x="80.47283172607422" y="228.76699829101562" width="55.23737716674805" height="19.11135768890381" fill="black" rx="2"/><rect x="215.2850799560547" y="193.76699829101562" width="44.943668365478516" height="19.11135768890381" fill="black" rx="2"/><rect x="103.58695220947266" y="304.32781982421875" width="132.87653350830078" height="21.270122528076172" fill="black" rx="2"/><rect x="112.00276184082031" y="320.7669982910156" width="115.6163330078125" height="19.11135768890381" fill="black" rx="2"/><rect x="457.9225158691406" y="22.327821731567383" width="104.1550064086914" height="21.270122528076172" fill="black" rx="2"/><rect x="529.181884765625" y="163.76699829101562" width="51.81864929199219" height="19.11135768890381" fill="black" rx="2"/><rect x="420.4728698730469" y="128.76699829101562" width="55.23740005493164" height="19.11135768890381" fill="black" rx="2"/><rect x="555.2850952148438" y="177.76699829101562" width="44.94364547729492" height="19.11135768890381" fill="black" rx="2"/><rect x="443.58697509765625" y="304.32781982421875" width="132.87653350830078" height="21.270122528076172" fill="black" rx="2"/><rect x="452.0027770996094" y="320.7669982910156" width="115.6163330078125" height="19.11135768890381" fill="black" rx="2"/></mask></defs>
+
+  <!-- 左图：顺时针 -->
+  <!-- 原向量 (0,0)→(100,0) 即 dx=100,dy=0 -->
+  <!-- 顺时针旋转: (dy,-dx)=(0,-100) 即向下... 不对，坐标系y向下 -->
+  <!-- 屏幕坐标系: y向下。顺时针旋转90°: (dx,dy)→(dy,-dx) -->
+  <!-- 原向量向右(100,0), 顺时针→(0,-100) 即向上 (屏幕y轴向下，所以-100是向上) -->
+  <!-- 实际上在屏幕坐标下顺时针: (dx,dy)→(-dy,dx) -->
+  <!-- 数学坐标顺时针=(dy,-dx), 屏幕坐标顺时针=(-dy,dx) -->
+  <!-- 让我用直觉画: 原向量向右，顺时针转90度应该向下 -->
+  
+  <!-- 左图中心 (170, 190) -->
+  <!-- 原向量: 向右 (170,190)→(270,190), dx=100,dy=0 -->
+  <!-- 顺时针90°(屏幕坐标): (dx,dy)→(-dy,dx) = (0,100) 即向下 -->
+  <!-- 所以旋转后向量: (170,190)→(170,290) -->
+
+  <text x="170" y="38" text-anchor="middle" style="fill:rgb(20, 20, 19);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:auto">顺时针旋转 90°</text>
+
+  <!-- 坐标轴参考 (淡) -->
+  <line x1="90" y1="190" x2="255" y2="190" stroke="var(--color-border-tertiary)" stroke-width="1" stroke-dasharray="3 3" style="fill:rgb(0, 0, 0);stroke:rgba(31, 30, 29, 0.15);color:rgb(0, 0, 0);stroke-width:1px;stroke-dasharray:3px, 3px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <line x1="170" y1="110" x2="170" y2="300" stroke="var(--color-border-tertiary)" stroke-width="1" stroke-dasharray="3 3" style="fill:rgb(0, 0, 0);stroke:rgba(31, 30, 29, 0.15);color:rgb(0, 0, 0);stroke-width:1px;stroke-dasharray:3px, 3px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- 原向量 蓝色 向右 -->
+  <line x1="170" y1="190" x2="258" y2="190" stroke="#185FA5" stroke-width="3" marker-end="url(#arrow)" style="fill:rgb(0, 0, 0);stroke:rgb(24, 95, 165);color:rgb(0, 0, 0);stroke-width:3px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="215" y="178" text-anchor="middle" fill="#185FA5" style="fill:rgb(61, 61, 58);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:auto">(dx, dy)</text>
+
+  <!-- 顺时针旋转后向量 coral向下 -->
+  <line x1="170" y1="190" x2="170" y2="278" stroke="#993C1D" stroke-width="3" marker-end="url(#arrow)" style="fill:rgb(0, 0, 0);stroke:rgb(153, 60, 29);color:rgb(0, 0, 0);stroke-width:3px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="108" y="243" text-anchor="middle" fill="#993C1D" style="fill:rgb(61, 61, 58);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:auto">(-dy, dx)</text>
+
+  <!-- 弧形箭头表示旋转方向 -->
+  <path d="M 215 165 A 40 40 0 0 1 196 228" fill="none" stroke="var(--color-text-secondary)" stroke-width="1.5" marker-end="url(#arrow)" mask="url(#imagine-text-gaps-127snm)" style="fill:none;stroke:rgb(61, 61, 58);color:rgb(0, 0, 0);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="238" y="208" text-anchor="middle" fill="var(--color-text-secondary)" style="fill:rgb(61, 61, 58);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:auto">顺时针</text>
+
+  <!-- 原点 -->
+  <circle cx="170" cy="190" r="4" fill="var(--color-text-primary)" style="fill:rgb(20, 20, 19);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- 公式框 -->
+  <g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+    <rect x="60" y="305" width="220" height="36" rx="8" stroke-width="0.5" style="fill:rgb(250, 236, 231);stroke:rgb(153, 60, 29);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <text x="170" y="320" text-anchor="middle" style="fill:rgb(113, 43, 19);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:auto">(dx, dy)  →  (-dy, dx)</text>
+    <text x="170" y="335" text-anchor="middle" style="fill:rgb(153, 60, 29);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:auto">x变成-dy，y变成dx</text>
+  </g>
+
+  <!-- 分隔线 -->
+  <line x1="340" y1="30" x2="340" y2="355" stroke="var(--color-border-secondary)" stroke-width="1.5" style="fill:rgb(0, 0, 0);stroke:rgba(31, 30, 29, 0.3);color:rgb(0, 0, 0);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- 右图：逆时针 -->
+  <!-- 逆时针90°(屏幕坐标): (dx,dy)→(dy,-dx) 即向上 -->
+  <!-- 原向量向右, 逆时针→向上 -->
+
+  <text x="510" y="38" text-anchor="middle" style="fill:rgb(20, 20, 19);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:auto">逆时针旋转 90°</text>
+
+  <!-- 坐标轴参考 (淡) -->
+  <line x1="430" y1="190" x2="595" y2="190" stroke="var(--color-border-tertiary)" stroke-width="1" stroke-dasharray="3 3" mask="url(#imagine-text-gaps-127snm)" style="fill:rgb(0, 0, 0);stroke:rgba(31, 30, 29, 0.15);color:rgb(0, 0, 0);stroke-width:1px;stroke-dasharray:3px, 3px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <line x1="510" y1="110" x2="510" y2="300" stroke="var(--color-border-tertiary)" stroke-width="1" stroke-dasharray="3 3" style="fill:rgb(0, 0, 0);stroke:rgba(31, 30, 29, 0.15);color:rgb(0, 0, 0);stroke-width:1px;stroke-dasharray:3px, 3px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- 原向量 蓝色 向右 -->
+  <line x1="510" y1="190" x2="598" y2="190" stroke="#185FA5" stroke-width="3" marker-end="url(#arrow)" mask="url(#imagine-text-gaps-127snm)" style="fill:rgb(0, 0, 0);stroke:rgb(24, 95, 165);color:rgb(0, 0, 0);stroke-width:3px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="555" y="178" text-anchor="middle" fill="#185FA5" style="fill:rgb(61, 61, 58);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:auto">(dx, dy)</text>
+
+  <!-- 逆时针旋转后向量 teal向上 -->
+  <line x1="510" y1="190" x2="510" y2="102" stroke="#0F6E56" stroke-width="3" marker-end="url(#arrow)" style="fill:rgb(0, 0, 0);stroke:rgb(15, 110, 86);color:rgb(0, 0, 0);stroke-width:3px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="448" y="143" text-anchor="middle" fill="#0F6E56" style="fill:rgb(61, 61, 58);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:auto">(dy, -dx)</text>
+
+  <!-- 弧形箭头表示旋转方向 -->
+  <path d="M 555 215 A 40 40 0 0 0 536 152" fill="none" stroke="var(--color-text-secondary)" stroke-width="1.5" marker-end="url(#arrow)" mask="url(#imagine-text-gaps-127snm)" style="fill:none;stroke:rgb(61, 61, 58);color:rgb(0, 0, 0);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="578" y="192" text-anchor="middle" fill="var(--color-text-secondary)" style="fill:rgb(61, 61, 58);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:auto">逆时针</text>
+
+  <!-- 原点 -->
+  <circle cx="510" cy="190" r="4" fill="var(--color-text-primary)" style="fill:rgb(20, 20, 19);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- 公式框 -->
+  <g style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+    <rect x="400" y="305" width="220" height="36" rx="8" stroke-width="0.5" style="fill:rgb(225, 245, 238);stroke:rgb(15, 110, 86);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <text x="510" y="320" text-anchor="middle" style="fill:rgb(8, 80, 65);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:auto">(dx, dy)  →  (dy, -dx)</text>
+    <text x="510" y="335" text-anchor="middle" style="fill:rgb(15, 110, 86);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:auto">x变成dy，y变成-dx</text>
+  </g>
+</svg>

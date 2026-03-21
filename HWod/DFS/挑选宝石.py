@@ -15,7 +15,7 @@ def dfs(start, selected):
         if product >= y:
             count += 1
         return
-    
+
     # 从start位置开始往后挑宝石
     for i in range(start, n):
         selected.append(gems[i])   # 选第i个宝石

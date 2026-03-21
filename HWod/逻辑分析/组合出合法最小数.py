@@ -29,7 +29,6 @@ def solve():
         candidate = s + ''.join(rest)  # 拼接
         if best is None or candidate < best:
             best = candidate
-
     print(best)
 
 solve()

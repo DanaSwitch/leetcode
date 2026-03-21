@@ -1,55 +1,88 @@
-# 将字符串按逗号切割并转成整数列表
-def split_to_int_list(s):
-    return list(map(int, s.split(',')))
+"""
+目标：让溃口面积尽可能小，同时耗材尽可能少。
 
+第一层：问题转化
+    将"最小化溃口面积"转化为"最大化填补量"
+    填补得越多，剩余面积越小
+    每个溃口的需求高度 = 坝岩高度 - 当前位置高度
+
+第二层：双目标贪心
+    第一优先级 → 最大化填补量：缺口从大到小处理，优先保证大缺口被填上
+    第二优先级 → 最小化耗材：满足需求时，选刚好够用的最小木材（精确匹配）
+
+第三层：木材选择逻辑
+    对每个溃口 needH:
+    ① 先找 >= needH 的最小木材 → 能填满，且不浪费（精确/略超）
+    ② 若没有，再找 < needH 的最大木材 → 填不满但尽力而为
+    ③ 若完全没有木材 → 停止（剩余溃口无材可用）
+
+为什么缺口要降序处理？
+    木材有限时，优先满足大缺口才能最大化总填补量
+    反例：木材[3]，缺口[1, 2]
+        顺序处理: 先填缺口1用掉木材3, 缺口2无材可填, 总填补量=1
+        降序处理: 先填缺口2用掉木材3, 缺口1无材可填, 总填补量=2 ✓
+
+为什么用计数桶？
+    木材高度范围固定在 1~15, 用桶可以 O(1) 增删, O(16) 查找
+    比排序+二分更简单，且无需引入额外库
+"""
 import sys
 
-data = sys.stdin.read().strip().split()
-# data = ["3","8,0,8","2","7,6"]
+def solve():
+    data = sys.stdin.read().split()
 
-n = int(data[0])
-str1 = data[1]
-m = int(data[2])
-str2 = data[3]
+    n = int(data[0])  # 数组长度
+    hight = list(map(int, data[1].split(',')))  # 坝口数组
+    woods = list(map(int, data[3].split(',')))  # 木材数组
 
-hight = split_to_int_list(str1)
-woods = split_to_int_list(str2)
+    k = hight[0]  # 坝岩高度（首尾相等, 取首即可）
 
-# 记录需要填充的溃口及高度
-need = []
-for i in range(1, n - 1):
-    diff = hight[0] - hight[i]
-    if diff > 0:
-        need.append(diff)
+    # ── 步骤1：提取缺口，降序排列（大缺口优先）──────────────────
+    # 跳过首尾坝岩（index 0 和 n-1），只看中间溃口
+    # hight[i] < k 说明该位置低于坝岩，存在缺口需要填补
+    need = sorted(
+        [k - hight[i] for i in range(1, n - 1) if hight[i] < k],
+        reverse=True
+    )
 
-# 统计木材数量（木材高度 ≤ 15）
-count = [0] * 17
-for h in woods:
-    count[h] += 1
+    if not need:
+        print(0)
+        return
 
-total = 0
+    # ── 步骤2：木材计数桶（高度范围 1~15，开17避免越界）────────
+    # count[h] 表示高度为 h 的木材还剩几根
+    count = [0] * 17
+    for h in woods:
+        count[h] += 1
 
-for needH in need:
-    flag = False
+    # ── 步骤3：逐个溃口贪心分配木材 ─────────────────────────────
+    total = 0  # 累计耗费的木材总高度
 
-    # 优先使用 ≥ needH 的木材
-    for j in range(needH, 17):
-        if count[j] > 0:
-            count[j] -= 1
-            total += j
-            flag = True
-            break
+    for needH in need:  # 按缺口从大到小依次处理
 
-    # 使用 < needH 的最大木材
-    if not flag:
-        for j in range(needH - 1, 0, -1):
+        # 策略①：寻找高度 >= needH 的最小木材（能填满且最省料）
+        # 从 needH 开始向上找，第一个有库存的高度即为最优
+        for j in range(needH, 17):
             if count[j] > 0:
-                count[j] -= 1
-                total += j
-                flag = True
+                count[j] -= 1  # 消耗一根该高度木材
+                total += j     # 累计耗材
                 break
 
-    if not flag:
-        break
+        # for 未被 break 打断 → 策略①没找到合适木材
+        else:
+            # 策略②：寻找高度 < needH 的最大木材（尽力填补）
+            # 从 needH-1 开始向下找，优先选最高的木材以最大化填补
+            for j in range(needH - 1, 0, -1):
+                if count[j] > 0:
+                    count[j] -= 1
+                    total += j
+                    break
 
-print(total)
+            # 策略①②均未找到 → 木材彻底耗尽，终止
+            # need 已降序，当前是最大缺口，连它都没材料，后续更无意义
+            else:
+                break
+
+    print(total)
+
+solve()

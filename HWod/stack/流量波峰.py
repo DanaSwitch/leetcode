@@ -15,7 +15,7 @@ def find_left_small(nums):
         if stack:
             # 最后一个就是最近且小于自己的, 记录下来
             left[i] = stack[-1]  # 记录的i左侧最近且小于 nums[i] 的元素的下标
-        stack.append(i)  # 将自己的下边记录下来
+        stack.append(i)  # 将自己的下标记录下来
     return left
 
 # 找到右边小于本身高度的最近点
