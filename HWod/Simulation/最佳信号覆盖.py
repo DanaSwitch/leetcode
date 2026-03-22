@@ -1,6 +1,5 @@
 def solve():
-    # 读取第一行：AP数量N 和 最大覆盖距离D
-    N, D = map(int, input().split())
+    N, D = map(int, input().split())  # AP数量N 和 最大覆盖距离D
     # 读取每个AP的位置和信号强度
     aps = [list(map(int, input().split())) for _ in range(N)]
 
@@ -11,10 +10,9 @@ def solve():
     best_signal = -1  # 当前最强信号
     best_pos = None   # 当前最优坐标
     
-    # 遍历所有候选坐标（x,y都从1开始，因为题目要求x,y>0）
+    # 遍历所有候选坐标(x,y都从1开始，因为题目要求x,y>0)
     for px in range(1, max_x + 1):
         for py in range(1, max_y + 1):
-            
             # 计算这个点的总信号强度
             total_wifi = 0
             for (ax, ay, s) in aps:  # s是ap的信号强度
