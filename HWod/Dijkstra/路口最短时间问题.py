@@ -44,7 +44,7 @@ def solve():
             nr, nc = r + dirs[nd][0], c + dirs[nd][1]
             if 0 <= nr < n and 0 <= nc < m:
                 turn = (nd - d + 4) % 4
-                
+
                 # 0:直行, 1:右转, 2:掉头, 3:左转
                 # 只有右转 (1) 不需要等待
                 wait = 0 if turn == 1 else lights[r][c]
