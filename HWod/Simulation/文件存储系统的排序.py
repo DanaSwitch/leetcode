@@ -1,52 +1,50 @@
 def solve():
     n = int(input())
-    target = input().strip()  # 目标文件夹
-    
-    lines = []
+    target_name = input()
+    messages = []
     for _ in range(n):
-        lines.append(input())
-    
-    # 解析每行：层级、名称、时间戳
-    parsed = []
-    for line in lines:
-        stripped = line.lstrip('-')  # 只删除左边的'-'
-        _count = len(line) - len(stripped)
-        level = _count // 4          # 每4个'-'表示一层
-        parts = stripped.split()
+        messages.append(input())
+
+    def parse_file(line):
+        tmp = line.lstrip('-')
+        level = (len(line)-len(tmp))//4
+        parts = tmp.strip().split()
         name = parts[0]
         time = int(parts[1])
-        parsed.append((level, name, time))
-    
-    # 找目标文件夹的位置
-    target_idx = -1
-    for i, (level, name, time) in enumerate(parsed):
-        if name == target and time == -1:
-            target_idx = i
+        return level, name, time
+
+    all_files = [parse_file(data) for data in messages]
+
+    target_id = None
+    target_level = None
+    # 找出目标文件的位置
+    for i, (level, name, time) in enumerate(all_files):
+        if name == target_name and time == -1:
+            target_level = level
+            target_id = i
             break
-    
-    if target_idx == -1:  # 没找到
-        print("No file")
+
+    if target_id is None:
+        print(-1)
         return
     
-    target_level = parsed[target_idx][0]
-    
-    # 收集目标文件夹下的所有文件（层级更深的所有非文件夹条目）
+    # 收集目标文件夹下的所有文件
     files = []
-    i = target_idx + 1
-    while i < len(parsed):
-        level, name, time = parsed[i]
-        if level <= target_level:    # 回到同级或更高，停止
-            break
-        if time != -1:                 # 不是文件夹，是文件
-            files.append((time, name))
-        i += 1
-    
+    for i in range(target_id+1, len(all_files)):
+        level, name, time = all_files[i]
+        if level <= target_level:
+            break  # 跳出目标文件层级了
+        if time != -1:  # 是文件
+            files.append((name, time))
+        
     if not files:
-        print("No file")
+        print(-1)
         return
     
-    files.sort()                     # 按时间戳升序排序
-    for time, name in files:
+    # 按照文件时间戳排序
+    files.sort(key=lambda x: x[1])
+    for name, time in files:
         print(f"{name} {time}")
 
-solve()
+if __name__ == "__main__":
+    solve()
