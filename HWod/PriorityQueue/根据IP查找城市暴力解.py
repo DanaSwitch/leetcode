@@ -45,7 +45,7 @@ for qi in q_index:
     while heap and heap[0][1] < target_ip:
         heapq.heappop(heap)
 
-    # ★ 堆顶直接就是最佳匹配，不需要再遍历
+    # ★ 堆顶直接就是最佳匹配, 不需要再遍历
     if heap:
         res[qi] = ip_ranges[heap[0][2]][3]
 

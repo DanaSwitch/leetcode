@@ -12,6 +12,7 @@ def solve(nums):
     return dp[n]
 
 if __name__ == "__main__":
+    # 围成圆圈, 不能跳相邻的, 也不能回头跳
     nums = list(map(int, input().split()))
     if len(nums) == 1:
         result = nums[0]
